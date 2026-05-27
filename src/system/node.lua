@@ -1,4 +1,4 @@
-local class = require("vendor.middleclass")
+local class = require("middleclass")
 
 ---@class Node
 ---@field id string

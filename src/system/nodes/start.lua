@@ -2,12 +2,14 @@
 local ID = "start"
 
 -- Dependencies
-local Node = require("node")
-local Choice = require("choice")
+local Node = require("system.node")
+local Choice = require("system.choice")
 
 -- Create node
 ---@type Node
 local node = Node:new(ID)
+
+node.title = "A new adventure"
 
 node.description = [[In a nice sunny morning, you wake up and get ready to set out in a new adventure.
 But first, an important decision must be made. Where will you head out to?

@@ -1,13 +1,15 @@
 -- Constants
-local ID = "start"
+local ID = "nyff mountains"
 
 -- Dependencies
-local Node = require("node")
-local Choice = require("choice")
+local Node = require("system.node")
+local Choice = require("system.choice")
 
 -- Create node
 ---@type Node
 local node = Node:new(ID)
+
+node.title = "Mountains of Nyff"
 
 node.description = [[It's cold, there snow is everywhere, the silence overwhelms you. As if this
 was not enough you realize your forgot your backpack, and the only food you have left
