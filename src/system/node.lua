@@ -15,11 +15,11 @@ function Node:initialize(id)
     self.description = nil
     self.choices = {}
 
-    for i, choice in pairs(self.choices) do
-        if choice:hasRequirement() then
-            local result = choice:runCondition()
-        end
-    end
+    -- for i, choice in pairs(self.choices) do
+    --     if choice:hasRequirement() then
+    --         local result = choice:runCondition()
+    --     end
+    -- end
 end
 
 return Node

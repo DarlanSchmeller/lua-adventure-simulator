@@ -1,2 +1,2 @@
-# war-sim-lua
-A game that tries to simulate a war.
+# Adventure Simulator
+A game that tries to simulate an adventure.

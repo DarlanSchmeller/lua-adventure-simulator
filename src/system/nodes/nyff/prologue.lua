@@ -1,5 +1,5 @@
 -- Constants
-local ID = "nyff mountains"
+local ID = "nyff.start"
 
 -- Dependencies
 local Node = require("system.node")
@@ -8,13 +8,6 @@ local Choice = require("system.choice")
 -- Create node
 ---@type Node
 local node = Node:new(ID)
-
-node.title = "Mountains of Nyff"
-
-node.description = [[It's cold, there snow is everywhere, the silence overwhelms you. As if this
-was not enough you realize your forgot your backpack, and the only food you have left
-is a potato from the day before.
-]]
 
 node.header = [[
         _    .  ,   .           .
@@ -25,6 +18,13 @@ node.header = [[
   /\  .-   `. \/     \ /==~=-=~=-=-;.  _/ \ -. `_/   \
  /  `-.__ ^   / .-'.--\ =-=~_=-=~=^/  _ `--./ .-'  `-
 /        `.  / /       `.~-^=-=~=^=.-'      '-._ `._
+]]
+
+node.title = "Mountains of Nyff"
+
+node.description = [[It's cold, there snow is everywhere, the silence overwhelms you. As if this
+was not enough you realize your forgot your backpack, and the only food you have left
+is a potato from the day before.
 ]]
 
 -- Create choices

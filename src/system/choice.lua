@@ -6,10 +6,10 @@ local class = require("middleclass")
 ---@field requirement function?
 local Choice = class("Choice")
 
-function Choice:initialize(id)
+function Choice:initialize(id, description, requirement)
     self.nextEvent = id
-    self.description = nil
-    self.requirement = nil
+    self.description = description
+    self.requirement = requirement
 end
 
 --- Returns if a choice has a requirement to be met

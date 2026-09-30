@@ -1,6 +1,6 @@
 package.path = package.path
     .. ";./src/?.lua"
-    .. ";./vendor/?.lua"
+    .. ";../vendor/?.lua"
 
 -- Enable warnings
 warn("@on")

@@ -41,7 +41,7 @@ end
 --- Returns the node associated with the provided ID
 ---@param nodeId any
 ---@return Node
-function nodeLoader.getNode(nodeId)
+function nodeLoader.getNodeById(nodeId)
     return nodeDictionary[nodeId]
 end
 

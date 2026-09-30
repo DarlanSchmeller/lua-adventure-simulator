@@ -1,5 +1,5 @@
 local game = {}
-local renderer = require("core.renderer")
+local Engine = require("core.engine")
 
 local GameData = require("system.game_data")
 local nodeLoader = require("system.node_loader")
@@ -11,10 +11,11 @@ _G.game = gameData
 function game.start()
     -- Load nodes
     nodeLoader.loadNodes()
+    gameData.activeNode = nodeLoader.getInitialNode()
 
-    for id, node in pairs(nodeLoader.getNodes()) do
-        print(id .. " - " .. node.title)
-    end
+    -- Start engine
+    local engine = Engine:new()  ---@type Engine
+    engine:runMainLoop()
 end
 
 return game
