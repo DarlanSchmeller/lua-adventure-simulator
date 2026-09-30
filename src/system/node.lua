@@ -14,12 +14,6 @@ function Node:initialize(id)
     self.title = nil
     self.description = nil
     self.choices = {}
-
-    -- for i, choice in pairs(self.choices) do
-    --     if choice:hasRequirement() then
-    --         local result = choice:runCondition()
-    --     end
-    -- end
 end
 
 return Node

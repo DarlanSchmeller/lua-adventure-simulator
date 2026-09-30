@@ -13,6 +13,12 @@ function game.start()
     nodeLoader.loadNodes()
     gameData.activeNode = nodeLoader.getInitialNode()
 
+    -- Check for nodeLoader errors
+    if nodeLoader.hasErrors() then
+        print("\nFound errors on nodeLoader process, aborting execution!")
+        os.exit()
+    end
+
     -- Start engine
     local engine = Engine:new()  ---@type Engine
     engine:runMainLoop()

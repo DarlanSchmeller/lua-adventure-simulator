@@ -4,18 +4,22 @@ local nodeLoader = {}
 local nodeDictionary = {}
 ---@type Node
 local initialNode = nil
+---@type boolean
+local errorFound = false
 
 local function loadNode(path)
     ---@type boolean, Node
     local success, node = pcall(require, path)
     
     if not success then
-        warn("Failure to load node" .. path .. ". Node not found.")
+        warn("Failure to load node '" .. path .. "'. Node not found.")
+        errorFound = true
         return
     end
     
     if nodeDictionary[node.id] ~= nil then
-        warn("Failure to load node" .. path .. ". The ID " .. node.id .. " already exists.")
+        warn("Failure to load node '" .. path .. "'. The ID " .. node.id .. " already exists.")
+        errorFound = true
         return
     end
 
@@ -26,10 +30,26 @@ end
 function nodeLoader.loadNodes()
     nodeDictionary = {}
 
+    -- Load initial node
     initialNode = require("system.nodes.start")
     nodeDictionary[initialNode.id] = initialNode
+
+    -- Load remaining nodes
     loadNode("system.nodes.nyff.prologue")
     loadNode("system.nodes.kalandra.prologue")
+
+    -- Validate node destinations
+    for _, node in pairs(nodeDictionary) do
+        for _, choice in pairs(node.choices) do
+            local destinationId = choice.nextEvent
+            local destinationNode = nodeDictionary[destinationId]
+
+            if destinationNode == nil then
+                warn("Failure to load node ID '" .. node.id .. "', destination node '" .. destinationId .. "' not found.")
+                errorFound = true
+            end
+        end
+    end
 end
 
 --- Returns all nodes created by this script
@@ -49,6 +69,12 @@ end
 ---@return Node
 function nodeLoader.getInitialNode()
     return initialNode
+end
+
+--- Returns true if nodeLoader ran into any errors
+---@return boolean
+function nodeLoader.hasErrors()
+    return errorFound
 end
 
 return nodeLoader
