@@ -1,26 +1,35 @@
 local renderer = {}
+local ansicolors = require("ansicolors")
 
 ---@return nil
 function renderer.clearTerminal()
-    os.execute("clear")
+    -- Clear using appropriate command based on path
+    if package.config:sub(1, 1) == "\\" then
+        os.execute("cls")
+    else
+        os.execute("clear")
+    end
 end
 
----@return nil
 ---@param node Node
+---@return nil
 function renderer.renderNode(node)
     if node.header then
-        print(node.header)
+        print(ansicolors("%{red}" .. node.header))
     end
 
-    print()
-    print("------ " .. node.title .. " ------")
+    print(ansicolors("%{blue}\n------ " .. node.title .. " ------"))
     print(node.description)
 end
 
----@return nil
+---@param index number
 ---@param choice Choice
+---@return nil
 function renderer.renderChoice(index , choice)
-    print("       [" .. index .. "] " .. choice.description)
+    local colorlist = {"red", "green", "yellow", "blue", "magenta", "cyan"}
+    local randomColor = colorlist[math.random(#colorlist)]    
+
+    print(ansicolors("%{" .. randomColor .. "}" .. "       [" .. index .. "] " .. choice.description))
 end
 
 return renderer
