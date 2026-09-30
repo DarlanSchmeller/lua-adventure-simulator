@@ -23,11 +23,4 @@ function renderer.renderChoice(index , choice)
     print("       [" .. index .. "] " .. choice.description)
 end
 
----@return string
-function renderer.collectPlayerChoice()
-    print()
-    io.write('> ')
-    return io.read()
-end
-
 return renderer

@@ -5,9 +5,11 @@ local renderer = require("core.renderer")
 ---@class Engine
 local Engine = class("Engine")
 
+---@return nil
 function Engine:initialize()
 end
 
+---@return nil
 function Engine:runMainLoop()
     while not game.isOver do
         local node = game.activeNode
@@ -27,15 +29,8 @@ function Engine:runMainLoop()
         end
 
         -- Ask user what he wants to do
-        local playerChoice = nil
-        while playerChoice == nil do 
-            playerChoice = validChoices[tonumber(renderer.collectPlayerChoice())]
-
-            if playerChoice == nil then
-                print("Please select an existing option.")
-            end
-        end
-
+        local playerChoice = Engine:collectPlayerChoice(validChoices) ---@type Choice
+    
         -- Advance to next node
         game.activeNode = nodeLoader.getNodeById(playerChoice.nextEvent)
     end
@@ -54,6 +49,26 @@ function Engine:getValidChoices(choices)
     end
 
     return validChoices
+end
+
+---@param validChoices table
+---@return Choice
+function Engine:collectPlayerChoice(validChoices)
+    local playerChoice = nil 
+    while playerChoice == nil do 
+        io.write('> ')
+        local input = tonumber(io.read())
+
+        playerChoice = validChoices[input]
+        
+        if not playerChoice == nil then
+            break
+        end
+
+        io.write("Please select an existing option.\n")
+    end
+
+    return playerChoice
 end
 
 return Engine
