@@ -18,7 +18,10 @@ function renderer.renderNode(node)
         print(ansicolors("%{red}" .. node.header))
     end
 
-    print(ansicolors("%{blue}\n------ " .. node.title .. " ------"))
+    if node.title then
+        print(ansicolors("%{blue}\n------ [ " .. node.title:upper() .. " ] ------"))
+    end
+    
     print(node.description)
 end
 

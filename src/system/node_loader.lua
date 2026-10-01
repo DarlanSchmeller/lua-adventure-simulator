@@ -36,6 +36,7 @@ function nodeLoader.loadNodes()
 
     -- Load remaining nodes
     loadNode("system.nodes.nyff.prologue")
+    loadNode("system.nodes.nyff.frozen")
     loadNode("system.nodes.kalandra.prologue")
 
     -- Validate node destinations

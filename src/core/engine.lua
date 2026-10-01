@@ -20,8 +20,17 @@ function Engine:runMainLoop()
         -- Print node
         renderer.renderNode(node)
 
+        -- Handle game over
+        if node.gameOver or node.gameWon then
+            os.exit()
+        end
+
         -- Get valid choices
         local validChoices = Engine:getValidChoices(node.choices)
+        if #validChoices == 0 then
+            warn("No valid option found for this node.")
+            os.exit()
+        end
 
         -- Show choices
         for index, choice in ipairs(validChoices) do
@@ -30,6 +39,9 @@ function Engine:runMainLoop()
 
         -- Ask user what he wants to do
         local playerChoice = Engine:collectPlayerChoice(validChoices) ---@type Choice
+        
+        -- Execute choice routine
+        playerChoice:runRoutine()
     
         -- Advance to next node
         game.activeNode = nodeLoader.getNodeById(playerChoice.nextEvent)
@@ -43,7 +55,7 @@ function Engine:getValidChoices(choices)
     
     for _, choice in ipairs(choices) do
         -- Verify if there is a requirement and if it's met
-        if not choice:hasRequirement() or choice:runCondition() then
+        if not choice:hasRequirement() or choice:runRequirement() then
             table.insert(validChoices, choice)
         end
     end

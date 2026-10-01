@@ -9,11 +9,13 @@ local class = require("middleclass")
 local Node = class("Node")
 
 function Node:initialize(id)
-    self.id = id
-    self.header = nil
-    self.title = nil
-    self.description = nil
-    self.choices = {}
+    self.id = id ---@type string
+    self.header = nil ---@type string
+    self.title = nil ---@type string
+    self.description = nil ---@type string
+    self.choices = {} ---@type table
+    self.gameOver = false ---@type boolean
+    self.gameWon = false ---@type boolean
 end
 
 return Node

@@ -29,8 +29,8 @@ is a potato from the day before.
 
 -- Create choices
 table.insert(node.choices, Choice:new(
-    "kalandra.start",
-    "To the Sunny Beach of Kalandra",
+    "nyff.frozen",
+    "Stay where you are and hope the weather gets better",
     nil
 ))
 

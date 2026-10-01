@@ -34,6 +34,7 @@ table.insert(node.choices, Choice:new(
 table.insert(node.choices, Choice:new(
     "nyff.start",
     "To the Frozen Mountains of Nyff",
+    nil,
     nil
 ))
 
