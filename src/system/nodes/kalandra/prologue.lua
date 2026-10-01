@@ -1,5 +1,5 @@
 -- Constants
-local ID = "kalandra.start"
+local ID = "kalandra.prologue"
 
 -- Dependencies
 local Node = require("system.node")
@@ -27,8 +27,14 @@ wrong.
 
 -- Create choices
 table.insert(node.choices, Choice:new(
-    "nyff.start",
-    "To the Frozen Mountains of Nyff",
+    "kalandra.investigate",
+    "Follow the trail inland to investigate the empty beach.",
+    nil
+))
+
+table.insert(node.choices, Choice:new(
+    "kalandra.dive",
+    "Dive into the water and explore the coast.",
     nil
 ))
 

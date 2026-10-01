@@ -1,5 +1,5 @@
 -- Constants
-local ID = "nyff.start"
+local ID = "nyff.prologue"
 
 -- Dependencies
 local Node = require("system.node")
@@ -22,16 +22,28 @@ node.header = [[
 
 node.title = "Mountains of Nyff"
 
-node.description = [[It's cold, there snow is everywhere, the silence overwhelms you. As if this
-was not enough you realize your forgot your backpack, and the only food you have left
-is a potato from the day before.
+node.description = [[The cold bites through your clothes, and snow stretches in every
+direction. You realize you left your backpack behind. All you have to eat is
+yesterday's potato, and a thin column of smoke rises somewhere below the ridge.
 ]]
 
 -- Create choices
 table.insert(node.choices, Choice:new(
-    "nyff.frozen",
-    "Stay where you are and hope the weather gets better",
+    "nyff.ranger_station",
+    "Follow the smoke toward a ranger station.",
     nil
+))
+
+table.insert(node.choices, Choice:new(
+    "nyff.frozen_lake",
+    "Take the shorter trail across the frozen lake.",
+    nil
+))
+
+table.insert(node.choices, Choice:new(
+  "nyff.frozen",
+  "Stay in the open and wait for the storm to pass.",
+  nil
 ))
 
 return node
