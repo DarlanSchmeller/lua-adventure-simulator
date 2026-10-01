@@ -26,18 +26,35 @@ local function loadNode(path)
     nodeDictionary[node.id] = node
 end
 
+--- Load nodes from the choices of a given node
+---@param parentNode Node
+---@return nil
+local function loadNodesFromChoices(parentNode)
+    for _, choice in pairs(parentNode.choices) do
+        local destinationId = choice.nextEvent
+
+        if not nodeDictionary[destinationId] then
+            loadNode("system.nodes." .. destinationId)
+
+            local destinationNode = nodeDictionary[destinationId]
+
+            if destinationNode then
+                loadNodesFromChoices(destinationNode)
+            end
+        end
+    end
+end
+
 --- Loads all nodes internally
 function nodeLoader.loadNodes()
     nodeDictionary = {}
 
     -- Load initial node
-    initialNode = require("system.nodes.start")
+    initialNode = require("system.nodes.prologue")
     nodeDictionary[initialNode.id] = initialNode
 
-    -- Load remaining nodes
-    loadNode("system.nodes.nyff.prologue")
-    loadNode("system.nodes.nyff.frozen")
-    loadNode("system.nodes.kalandra.prologue")
+    -- Load remaining nodes recursively
+    loadNodesFromChoices(initialNode)
 
     -- Validate node destinations
     for _, node in pairs(nodeDictionary) do
